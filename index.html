@@ -254,6 +254,153 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kangschampagne.github.io/2017/09/12/第六课/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kangschampagne">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kagen-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/09/12/第六课/" itemprop="url">第六课</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-12T00:37:54+08:00">
+                2017-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="第六课"><a href="#第六课" class="headerlink" title="第六课"></a>第六课</h1><h3 id="db"><a href="#db" class="headerlink" title="db"></a>db</h3><p><a href="https://github.com/miniflycn/db" target="_blank" rel="external">https://github.com/miniflycn/db</a><br>前端数据处理层方法集</p>
+<blockquote>
+<p>后台数据和前台数据需要一种映射的关系<br>DO ( Data Object ) ( mongodb )   –&gt;   VO ( View Object ) (template)</p>
+</blockquote>
+<p>使用 管道模型</p>
+<blockquote>
+<p>大多数插件系统使用的设计模式<br><a href="https://github.com/IMweb/Q.js/issues/17" target="_blank" rel="external">https://github.com/IMweb/Q.js/issues/17</a><br>1.可以在 this.succHandles 中做 Do -&gt; Vo 的过程<br>2.在 this.errHandles 中处理一些通用的错误处理</p>
+</blockquote>
+<p>DB的场景<br>1.需要处理一些登入态续登的问题<br>2.业务之间可能有定制化，不能把所有的业务定制都写在用一个东西里面，需要一种模型进行抽象— 管道模型</p>
+<h3 id="为什么一定要做数据缓存"><a href="#为什么一定要做数据缓存" class="headerlink" title="为什么一定要做数据缓存"></a>为什么一定要做数据缓存</h3><p>server render 页面加载速度最快<br>加载顺序<br>HTML download -&gt; CSS download -&gt; JS download -&gt; parase js -&gt; run js -&gt; ajax =&gt; render<br>做法1. 省掉 ajax请求使用 localstorage 等<br>100 request -&gt; DB -&gt; 1 request backend<br>做法2. HTML -&gt; JSONP -&gt; CSS -&gt; JS -&gt; JS parse -&gt; JS run -&gt; render<br>ajax -&gt; 100 ~ 200ms 通过 DB 使用缓存</p>
+<p>合并请求 -&gt; graphQL <a href="http://graphql.org/learn/" target="_blank" rel="external">http://graphql.org/learn/</a></p>
+<h3 id="homework-3"><a href="#homework-3" class="headerlink" title="homework 3"></a>homework 3</h3><blockquote>
+<p>// 0. 默认，情况下，如果没缓存，成功请求回调一次，如果有请求成功缓存应当回调两次，这样可以保证页面快速渲染，而不需要等数据返回<br>场景：先读缓存 渲染再 请求新数据</p>
+<p>// 1. lazy更新，有缓存的情况下直接读取缓存，只有一次回调，但会发出请求，请求返回后只更新缓存里的数据为最新的，这样，下次再调用就能拿到这次更新的数据了<br>options.lazy = true<br>场景：一般加 maxAge ，过去时间点的 订单或者 过去时间点 的 销量数据 定时任务</p>
+<p>// 2. 在maxAge内使用缓存，则当发现缓存里的数据小于maxAge，则直接读取缓存，不发出任何请求，否则发出请求读取请求的数据<br>options.maxAge = 1000 // 即缓存是1s，也就是说这个单位是ms<br>场景： 高频率的请求 F5 service render memcache redis</p>
+</blockquote>
+<p>数据的存储一般是带有版本号信息。<br>例如 </p>
+<blockquote>
+<p>Key =&gt; refly1✂\$<em>stranger</em>\$✂ppp://123?✂1504940051878<br>Value =&gt; { “r”: { “ret”: 123 }, “v”: 1 }</p>
+</blockquote>
+<p>版本号 v 为 数据结构的 版本号，即数据结构不同，避免因为数据结构更改导致抛错。<br>数据等级 refly 1 =&gt; 等级 1</p>
+<p>问： 大家觉得localStorage是纯单key好还是存多key好？<br>多 key 比较好， 因为单个 key 的读取速度较慢。<br>性能测试点。</p>
+<p>在localStorage 操作要比在 内存上操作要慢很多。</p>
+<p>不能用 cookie 做缓存， 每次都会有请求。</p>
+<blockquote>
+<p>LRU (L)<br><a href="https://github.com/rsms/js-lru" target="_blank" rel="external">https://github.com/rsms/js-lru</a></p>
+</blockquote>
+<h3 id="CSS-Parser"><a href="#CSS-Parser" class="headerlink" title="CSS Parser"></a>CSS Parser</h3><p>// rule<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// rule</div><div class="line"><span class="selector-tag">selector</span> &#123;</div><div class="line">	// declarations</div><div class="line">	<span class="selector-tag">key</span>: <span class="selector-tag">value</span>;</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://kangschampagne.github.io/2017/08/29/第四课/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -336,28 +483,28 @@
 </ol>
 <p>例子：<br>ke.qq.com<br>分析：</p>
 <ol>
-<li><p>bad.js – 错误监控<br><img src="/2017/08/29/第四课/bad.js -- 错误监控.png" alt="Alt text"></p>
+<li><p>bad.js – 错误监控<br><img src="/2017/08/29/第四课/1.png" alt="Alt text"></p>
 </li>
-<li><p>monitors – 接口上报<br><img src="/2017/08/29/第四课/monitors -- 接口上报.png" alt="Alt text"></p>
+<li><p>monitors – 接口上报<br><img src="/2017/08/29/第四课/2.png" alt="Alt text"></p>
 </li>
-<li><p>tdw – 用户数据监控<br><img src="/2017/08/29/第四课/tdw -- 用户数据监控.png" alt="Alt text"></p>
+<li><p>tdw – 用户数据监控<br><img src="/2017/08/29/第四课/3.png" alt="Alt text"></p>
 </li>
-<li><p>huatuo – 性能监控<br><img src="/2017/08/29/第四课/huatuo -- 性能监控.png" alt="Alt text"></p>
+<li><p>huatuo – 性能监控<br><img src="/2017/08/29/第四课/4.png" alt="Alt text"></p>
 </li>
 </ol>
 <p>上报不需要接口返回值，所以一般都用image完成<br>git演示 <a href="https://github.com/kangschampagne/showcase4" target="_blank" rel="external">https://github.com/kangschampagne/showcase4</a></p>
 <p>作业： 使用 grep 命令 搜索 log</p>
 <h3 id="业务上报方式"><a href="#业务上报方式" class="headerlink" title="业务上报方式"></a>业务上报方式</h3><h4 id="1-人工对操作上报"><a href="#1-人工对操作上报" class="headerlink" title="1.人工对操作上报"></a>1.人工对操作上报</h4><p>对每个操作人工写一个上报</p>
-<h4 id="2-百度统计或者Google-Analytics"><a href="#2-百度统计或者Google-Analytics" class="headerlink" title="2.百度统计或者Google Analytics"></a>2.百度统计或者Google Analytics</h4><p>通过发送带上cookie的Image标签请求，来定位用户与站点信息<br><img src="/2017/08/29/第四课/百度统计或者Google Analytics.png" alt="Alt text"><br>问题： 如果cookie 被禁用？<br>尝试让用户登入，因为登入态较多。<br>浏览器会产生一些类似唯一识别码的东西。</p>
+<h4 id="2-百度统计或者Google-Analytics"><a href="#2-百度统计或者Google-Analytics" class="headerlink" title="2.百度统计或者Google Analytics"></a>2.百度统计或者Google Analytics</h4><p>通过发送带上cookie的Image标签请求，来定位用户与站点信息<br><img src="/2017/08/29/第四课/5.png" alt="Alt text"><br>问题： 如果cookie 被禁用？<br>尝试让用户登入，因为登入态较多。<br>浏览器会产生一些类似唯一识别码的东西。</p>
 <h4 id="3-点击截获上报"><a href="#3-点击截获上报" class="headerlink" title="3.点击截获上报"></a>3.点击截获上报</h4><p>通过时间冒泡和DOM上的标记找到对应的行动点</p>
 <p>其他方法<br>基于本地存储的数据LOG，必要的时候服务器发起收集<br>基于DSL做切面的事件自动注入，产品也可以自定义上报</p>
 <p>拓展 AOP： 面向切面编程AOP<br>知乎： <a href="https://www.zhihu.com/question/24863332" target="_blank" rel="external">https://www.zhihu.com/question/24863332</a></p>
 <h3 id="性能数据上报"><a href="#性能数据上报" class="headerlink" title="性能数据上报"></a>性能数据上报</h3><h4 id="1-打点上报"><a href="#1-打点上报" class="headerlink" title="1.打点上报"></a>1.打点上报</h4><p>例子：TRecord 打点，页面加载时间，各个部分js、css加载时间等等</p>
 <h4 id="2-Performance-timing"><a href="#2-Performance-timing" class="headerlink" title="2.Performance.timing"></a>2.Performance.timing</h4><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance/timing" target="_blank" rel="external">https://developer.mozilla.org/en-US/docs/Web/API/Performance/timing</a><br><a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming" target="_blank" rel="external">https://developer.mozilla.org/en-US/docs/Web/API/PerformanceTiming</a></p>
-<h4 id="3-性能数据能拿来干什么？"><a href="#3-性能数据能拿来干什么？" class="headerlink" title="3.性能数据能拿来干什么？"></a>3.性能数据能拿来干什么？</h4><p><img src="/2017/08/29/第四课/性能数据能拿来干什么.png" alt="Alt text"></p>
+<h4 id="3-性能数据能拿来干什么？"><a href="#3-性能数据能拿来干什么？" class="headerlink" title="3.性能数据能拿来干什么？"></a>3.性能数据能拿来干什么？</h4><p><img src="/2017/08/29/第四课/6.png" alt="Alt text"></p>
 <h3 id="稳定性监控"><a href="#稳定性监控" class="headerlink" title="稳定性监控"></a>稳定性监控</h3><p>一般靠后端</p>
 <h3 id="BadJS"><a href="#BadJS" class="headerlink" title="BadJS"></a>BadJS</h3><p>Q: 怎么捕获前端错误<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">window</span>.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">msg, url, row, col,error</span>) </span>&#123;</div><div class="line">	report(&#123;</div><div class="line">		msg: msg,</div><div class="line">		url: url,</div><div class="line">		row: row,</div><div class="line">		col: col</div><div class="line">	&#125;)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>从堆栈信息找错误<br><img src="/2017/08/29/第四课/从堆栈信息找错误.png" alt="Alt text"></p>
+<p>从堆栈信息找错误<br><img src="/2017/08/29/第四课/7.png" alt="Alt text"></p>
 <h4 id="出现“Script-error”的场景和条件"><a href="#出现“Script-error”的场景和条件" class="headerlink" title="出现“Script error”的场景和条件"></a>出现“Script error”的场景和条件</h4><p>1.通过window.onerror注册监听脚本错误时间<br>2.浏览器<br>3.页面内使用了script标签，非同域的资源，且发生脚本错误<br>解决方法：<br>第一种<br>在脚本文件的HTTP response header 中设置 CORS<br>比如： Access-Control-Allow-Origin: http:// xx.xx.xx<br>在页面的script标签中设置 crossorigin 属性<br>比如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"http://xx.xx.xx/index.js"</span> crossorigin&gt;&lt;/script&gt;</div></pre></td></tr></table></figure></p>
 <p>第二种<br>对入口及异步方法全部用try-catch包裹<br>setTimeout setInterval<br>事件绑定<br>ajax callback<br>define 和require<br>业务主入口</p>
 <h3 id="第四课-github-地址"><a href="#第四课-github-地址" class="headerlink" title="第四课 github 地址"></a>第四课 github 地址</h3><p>展台4: 上报 <a href="https://github.com/kangschampagne/showcase4" target="_blank" rel="external">https://github.com/kangschampagne/showcase4</a><br>练习5: 正则 <a href="https://github.com/kangschampagne/exercise5" target="_blank" rel="external">https://github.com/kangschampagne/exercise5</a><br>练习6: 正则2 <a href="https://github.com/kangschampagne/exercise6" target="_blank" rel="external">https://github.com/kangschampagne/exercise6</a></p>
@@ -753,7 +900,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">Artikel</span>
               </a>
             </div>
@@ -766,7 +913,7 @@
             
             <div class="site-state-item site-state-tags">
               
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">Tags</span>
               
             </div>

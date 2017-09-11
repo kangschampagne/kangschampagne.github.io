@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="DB 管道模型," />
 
 
 
@@ -94,17 +94,18 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="第六课dbhttps://github.com/miniflycn/db前端数据处理层方法集  后台数据和前台数据需要一种映射的关系DO ( Data Object ) ( mongodb )   –&amp;gt;   VO ( View Object ) (template)  使用 管道模型  大多数插件系统使用的设计模式https://github.com/IMweb/Q.js/issues/17">
+<meta name="keywords" content="DB 管道模型">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://kangschampagne.github.io/2017/08/19/hello-world/index.html">
+<meta property="og:title" content="第六课">
+<meta property="og:url" content="https://kangschampagne.github.io/2017/09/12/第六课/index.html">
 <meta property="og:site_name" content="Kagen-Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="第六课dbhttps://github.com/miniflycn/db前端数据处理层方法集  后台数据和前台数据需要一种映射的关系DO ( Data Object ) ( mongodb )   –&amp;gt;   VO ( View Object ) (template)  使用 管道模型  大多数插件系统使用的设计模式https://github.com/IMweb/Q.js/issues/17">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-08-19T05:38:42.943Z">
+<meta property="og:updated_time" content="2017-09-11T16:38:41.610Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="第六课">
+<meta name="twitter:description" content="第六课dbhttps://github.com/miniflycn/db前端数据处理层方法集  后台数据和前台数据需要一种映射的关系DO ( Data Object ) ( mongodb )   –&amp;gt;   VO ( View Object ) (template)  使用 管道模型  大多数插件系统使用的设计模式https://github.com/IMweb/Q.js/issues/17">
 
 
 
@@ -133,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="https://kangschampagne.github.io/2017/08/19/hello-world/"/>
+  <link rel="canonical" href="https://kangschampagne.github.io/2017/09/12/第六课/"/>
 
 
 
 
 
-  <title>Hello World | Kagen-Blog</title>
+  <title>第六课 | Kagen-Blog</title>
   
 
 
@@ -256,7 +257,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kangschampagne.github.io/2017/08/19/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://kangschampagne.github.io/2017/09/12/第六课/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kangschampagne">
@@ -273,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">第六课</h1>
         
 
         <div class="post-meta">
@@ -285,8 +286,8 @@
               
                 <span class="post-meta-item-text">Veröffentlicht am</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-19T13:38:42+08:00">
-                2017-08-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-12T00:37:54+08:00">
+                2017-09-12
               </time>
             
 
@@ -323,15 +324,34 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+        <h1 id="第六课"><a href="#第六课" class="headerlink" title="第六课"></a>第六课</h1><h3 id="db"><a href="#db" class="headerlink" title="db"></a>db</h3><p><a href="https://github.com/miniflycn/db" target="_blank" rel="external">https://github.com/miniflycn/db</a><br>前端数据处理层方法集</p>
+<blockquote>
+<p>后台数据和前台数据需要一种映射的关系<br>DO ( Data Object ) ( mongodb )   –&gt;   VO ( View Object ) (template)</p>
+</blockquote>
+<p>使用 管道模型</p>
+<blockquote>
+<p>大多数插件系统使用的设计模式<br><a href="https://github.com/IMweb/Q.js/issues/17" target="_blank" rel="external">https://github.com/IMweb/Q.js/issues/17</a><br>1.可以在 this.succHandles 中做 Do -&gt; Vo 的过程<br>2.在 this.errHandles 中处理一些通用的错误处理</p>
+</blockquote>
+<p>DB的场景<br>1.需要处理一些登入态续登的问题<br>2.业务之间可能有定制化，不能把所有的业务定制都写在用一个东西里面，需要一种模型进行抽象— 管道模型</p>
+<h3 id="为什么一定要做数据缓存"><a href="#为什么一定要做数据缓存" class="headerlink" title="为什么一定要做数据缓存"></a>为什么一定要做数据缓存</h3><p>server render 页面加载速度最快<br>加载顺序<br>HTML download -&gt; CSS download -&gt; JS download -&gt; parase js -&gt; run js -&gt; ajax =&gt; render<br>做法1. 省掉 ajax请求使用 localstorage 等<br>100 request -&gt; DB -&gt; 1 request backend<br>做法2. HTML -&gt; JSONP -&gt; CSS -&gt; JS -&gt; JS parse -&gt; JS run -&gt; render<br>ajax -&gt; 100 ~ 200ms 通过 DB 使用缓存</p>
+<p>合并请求 -&gt; graphQL <a href="http://graphql.org/learn/" target="_blank" rel="external">http://graphql.org/learn/</a></p>
+<h3 id="homework-3"><a href="#homework-3" class="headerlink" title="homework 3"></a>homework 3</h3><blockquote>
+<p>// 0. 默认，情况下，如果没缓存，成功请求回调一次，如果有请求成功缓存应当回调两次，这样可以保证页面快速渲染，而不需要等数据返回<br>场景：先读缓存 渲染再 请求新数据</p>
+<p>// 1. lazy更新，有缓存的情况下直接读取缓存，只有一次回调，但会发出请求，请求返回后只更新缓存里的数据为最新的，这样，下次再调用就能拿到这次更新的数据了<br>options.lazy = true<br>场景：一般加 maxAge ，过去时间点的 订单或者 过去时间点 的 销量数据 定时任务</p>
+<p>// 2. 在maxAge内使用缓存，则当发现缓存里的数据小于maxAge，则直接读取缓存，不发出任何请求，否则发出请求读取请求的数据<br>options.maxAge = 1000 // 即缓存是1s，也就是说这个单位是ms<br>场景： 高频率的请求 F5 service render memcache redis</p>
+</blockquote>
+<p>数据的存储一般是带有版本号信息。<br>例如 </p>
+<blockquote>
+<p>Key =&gt; refly1✂\$<em>stranger</em>\$✂ppp://123?✂1504940051878<br>Value =&gt; { “r”: { “ret”: 123 }, “v”: 1 }</p>
+</blockquote>
+<p>版本号 v 为 数据结构的 版本号，即数据结构不同，避免因为数据结构更改导致抛错。<br>数据等级 refly 1 =&gt; 等级 1</p>
+<p>问： 大家觉得localStorage是纯单key好还是存多key好？<br>多 key 比较好， 因为单个 key 的读取速度较慢。<br>性能测试点。</p>
+<p>在localStorage 操作要比在 内存上操作要慢很多。</p>
+<p>不能用 cookie 做缓存， 每次都会有请求。</p>
+<blockquote>
+<p>LRU (L)<br><a href="https://github.com/rsms/js-lru" target="_blank" rel="external">https://github.com/rsms/js-lru</a></p>
+</blockquote>
+<h3 id="CSS-Parser"><a href="#CSS-Parser" class="headerlink" title="CSS Parser"></a>CSS Parser</h3><p>// rule<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// rule</div><div class="line"><span class="selector-tag">selector</span> &#123;</div><div class="line">	// declarations</div><div class="line">	<span class="selector-tag">key</span>: <span class="selector-tag">value</span>;</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -347,6 +367,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/DB-管道模型/" rel="tag"># DB 管道模型</a>
+          
+        </div>
+      
 
       
       
@@ -356,15 +382,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/08/29/第四课/" rel="next" title="第四课">
+                <i class="fa fa-chevron-left"></i> 第四课
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/08/20/第三课笔记/" rel="prev" title="第三课笔记">
-                第三课笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -489,7 +515,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第六课"><span class="nav-number">1.</span> <span class="nav-text">第六课</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#db"><span class="nav-number">1.0.1.</span> <span class="nav-text">db</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么一定要做数据缓存"><span class="nav-number">1.0.2.</span> <span class="nav-text">为什么一定要做数据缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#homework-3"><span class="nav-number">1.0.3.</span> <span class="nav-text">homework 3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-Parser"><span class="nav-number">1.0.4.</span> <span class="nav-text">CSS Parser</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
