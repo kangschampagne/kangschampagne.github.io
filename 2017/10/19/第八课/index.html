@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="DB 管道模型," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -94,18 +94,17 @@
 
 
 
-<meta name="description" content="第六课dbhttps://github.com/miniflycn/db前端数据处理层方法集  后台数据和前台数据需要一种映射的关系DO ( Data Object ) ( mongodb )   –&amp;gt;   VO ( View Object ) (template)  使用 管道模型  大多数插件系统使用的设计模式https://github.com/IMweb/Q.js/issues/17">
-<meta name="keywords" content="DB 管道模型">
+<meta name="description" content="大部分性能优化都是基于缓存空间换时间缓存的作用1.减少延迟2.降低网络负载 (锤子抢购按钮随机数限流)3.保证稳定性 HTTP的缓存 Expires 设置对象的有效期问题: 用户的本地时间可能和服务器的时间不一致 Cache-Control HTTP1.1引入1.max-age=num(s), 设置最大缓存2.public, 缓存能被多用户共享3.private, 缓存不能在多用户间共享 (默认)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第六课">
-<meta property="og:url" content="https://kangschampagne.github.io/2017/09/12/第六课/index.html">
+<meta property="og:title" content="第八课">
+<meta property="og:url" content="https://kangschampagne.github.io/2017/10/19/第八课/index.html">
 <meta property="og:site_name" content="Kagen-Blog">
-<meta property="og:description" content="第六课dbhttps://github.com/miniflycn/db前端数据处理层方法集  后台数据和前台数据需要一种映射的关系DO ( Data Object ) ( mongodb )   –&amp;gt;   VO ( View Object ) (template)  使用 管道模型  大多数插件系统使用的设计模式https://github.com/IMweb/Q.js/issues/17">
+<meta property="og:description" content="大部分性能优化都是基于缓存空间换时间缓存的作用1.减少延迟2.降低网络负载 (锤子抢购按钮随机数限流)3.保证稳定性 HTTP的缓存 Expires 设置对象的有效期问题: 用户的本地时间可能和服务器的时间不一致 Cache-Control HTTP1.1引入1.max-age=num(s), 设置最大缓存2.public, 缓存能被多用户共享3.private, 缓存不能在多用户间共享 (默认)">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-11T16:38:41.610Z">
+<meta property="og:updated_time" content="2017-10-19T14:49:33.693Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第六课">
-<meta name="twitter:description" content="第六课dbhttps://github.com/miniflycn/db前端数据处理层方法集  后台数据和前台数据需要一种映射的关系DO ( Data Object ) ( mongodb )   –&amp;gt;   VO ( View Object ) (template)  使用 管道模型  大多数插件系统使用的设计模式https://github.com/IMweb/Q.js/issues/17">
+<meta name="twitter:title" content="第八课">
+<meta name="twitter:description" content="大部分性能优化都是基于缓存空间换时间缓存的作用1.减少延迟2.降低网络负载 (锤子抢购按钮随机数限流)3.保证稳定性 HTTP的缓存 Expires 设置对象的有效期问题: 用户的本地时间可能和服务器的时间不一致 Cache-Control HTTP1.1引入1.max-age=num(s), 设置最大缓存2.public, 缓存能被多用户共享3.private, 缓存不能在多用户间共享 (默认)">
 
 
 
@@ -134,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="https://kangschampagne.github.io/2017/09/12/第六课/"/>
+  <link rel="canonical" href="https://kangschampagne.github.io/2017/10/19/第八课/"/>
 
 
 
 
 
-  <title>第六课 | Kagen-Blog</title>
+  <title>第八课 | Kagen-Blog</title>
   
 
 
@@ -257,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://kangschampagne.github.io/2017/09/12/第六课/">
+    <link itemprop="mainEntityOfPage" href="https://kangschampagne.github.io/2017/10/19/第八课/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Kangschampagne">
@@ -274,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">第六课</h1>
+          <h1 class="post-title" itemprop="name headline">第八课</h1>
         
 
         <div class="post-meta">
@@ -286,8 +285,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-12T00:37:54+08:00">
-                2017-09-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-19T22:43:30+08:00">
+                2017-10-19
               </time>
             
 
@@ -324,35 +323,41 @@
       
 
       
-        <h1 id="第六课"><a href="#第六课" class="headerlink" title="第六课"></a>第六课</h1><h3 id="db"><a href="#db" class="headerlink" title="db"></a>db</h3><p><a href="https://github.com/miniflycn/db" target="_blank" rel="external">https://github.com/miniflycn/db</a><br>前端数据处理层方法集</p>
+        <h4 id="大部分性能优化都是基于缓存空间换时间"><a href="#大部分性能优化都是基于缓存空间换时间" class="headerlink" title="大部分性能优化都是基于缓存空间换时间"></a>大部分性能优化都是基于缓存空间换时间</h4><h4 id="缓存的作用"><a href="#缓存的作用" class="headerlink" title="缓存的作用"></a>缓存的作用</h4><p>1.减少延迟<br>2.降低网络负载 (锤子抢购按钮随机数限流)<br>3.保证稳定性</p>
+<h4 id="HTTP的缓存"><a href="#HTTP的缓存" class="headerlink" title="HTTP的缓存"></a>HTTP的缓存</h4><ol>
+<li>Expires 设置对象的有效期<br>问题: 用户的本地时间可能和服务器的时间不一致</li>
+<li><p>Cache-Control HTTP1.1引入<br>1.max-age=num(s), 设置最大缓存<br>2.public, 缓存能被多用户共享<br>3.private, 缓存不能在多用户间共享 (默认)<br>4.no-cache, 不会被缓存 (本地缓存了，但是用不了，用于时效性很强的)<br>5.no-store, 不能被存储 (安全考虑)</p>
+</li>
+<li><p>last-modified 设置对象的最后修改时间<br>在response Header中有last-modified 时间点，服务器check这个时间，不同则返回新文件<br>问题点: 同一时间快速度修改同一时间，这个文件已经改变。<br>问题点：CDN推送的时候，修改的时间不一致 即 服务器上文件修改时间并不一致</p>
+</li>
+<li><p>E-tag (类似文件的 uid)<br>if-none-match</p>
+</li>
+</ol>
 <blockquote>
-<p>后台数据和前台数据需要一种映射的关系<br>DO ( Data Object ) ( mongodb )   –&gt;   VO ( View Object ) (template)</p>
+<p>分析：<br>max-age 和 last-modified 同时存在的情况<br>1.根据max-age看文件是否失效<br>否，直接从缓存中读取文件。是，携带 last-modified修改时间 向服务器发起请求<br>2.服务器看修改时间是否相同（同一文件）<br>否，返回新文件。是，返回304</p>
+<p>max-age + last-modified + E-tag<br>1.根据max-age看文件是否失效<br>否，直接从缓存中读取文件。是，携带 last-modified修改时间 和 E-tag(如果浏览器只支持HTTP1.0，则不携带Etag) 向服务器发起请求<br>2.如果服务器支持HTTP1.1，直接验证E-tag(优先级较高)</p>
 </blockquote>
-<p>使用 管道模型</p>
-<blockquote>
-<p>大多数插件系统使用的设计模式<br><a href="https://github.com/IMweb/Q.js/issues/17" target="_blank" rel="external">https://github.com/IMweb/Q.js/issues/17</a><br>1.可以在 this.succHandles 中做 Do -&gt; Vo 的过程<br>2.在 this.errHandles 中处理一些通用的错误处理</p>
-</blockquote>
-<p>DB的场景<br>1.需要处理一些登入态续登的问题<br>2.业务之间可能有定制化，不能把所有的业务定制都写在用一个东西里面，需要一种模型进行抽象— 管道模型</p>
-<h3 id="为什么一定要做数据缓存"><a href="#为什么一定要做数据缓存" class="headerlink" title="为什么一定要做数据缓存"></a>为什么一定要做数据缓存</h3><p>server render 页面加载速度最快<br>加载顺序<br>HTML download -&gt; CSS download -&gt; JS download -&gt; parase js -&gt; run js -&gt; ajax =&gt; render<br>做法1. 省掉 ajax请求使用 localstorage 等<br>100 request -&gt; DB -&gt; 1 request backend<br>做法2. HTML -&gt; JSONP -&gt; CSS -&gt; JS -&gt; JS parse -&gt; JS run -&gt; render<br>ajax -&gt; 100 ~ 200ms 通过 DB 使用缓存</p>
-<p>合并请求 -&gt; graphQL <a href="http://graphql.org/learn/" target="_blank" rel="external">http://graphql.org/learn/</a></p>
-<h3 id="homework-3"><a href="#homework-3" class="headerlink" title="homework 3"></a>homework 3</h3><blockquote>
-<p>// 0. 默认，情况下，如果没缓存，成功请求回调一次，如果有请求成功缓存应当回调两次，这样可以保证页面快速渲染，而不需要等数据返回<br>场景：先读缓存 渲染再 请求新数据</p>
-<p>// 1. lazy更新，有缓存的情况下直接读取缓存，只有一次回调，但会发出请求，请求返回后只更新缓存里的数据为最新的，这样，下次再调用就能拿到这次更新的数据了<br>options.lazy = true<br>场景：一般加 maxAge ，过去时间点的 订单或者 过去时间点 的 销量数据 定时任务</p>
-<p>// 2. 在maxAge内使用缓存，则当发现缓存里的数据小于maxAge，则直接读取缓存，不发出任何请求，否则发出请求读取请求的数据<br>options.maxAge = 1000 // 即缓存是1s，也就是说这个单位是ms<br>场景： 高频率的请求 F5 service render memcache redis</p>
-</blockquote>
-<p>数据的存储一般是带有版本号信息。<br>例如 </p>
-<blockquote>
-<p>Key =&gt; refly1✂\$<em>stranger</em>\$✂ppp://123?✂1504940051878<br>Value =&gt; { “r”: { “ret”: 123 }, “v”: 1 }</p>
-</blockquote>
-<p>版本号 v 为 数据结构的 版本号，即数据结构不同，避免因为数据结构更改导致抛错。<br>数据等级 refly 1 =&gt; 等级 1</p>
-<p>问： 大家觉得localStorage是纯单key好还是存多key好？<br>多 key 比较好， 因为单个 key 的读取速度较慢。<br>性能测试点。</p>
-<p>在localStorage 操作要比在 内存上操作要慢很多。</p>
-<p>不能用 cookie 做缓存， 每次都会有请求。</p>
-<blockquote>
-<p>LRU (L)<br><a href="https://github.com/rsms/js-lru" target="_blank" rel="external">https://github.com/rsms/js-lru</a></p>
-</blockquote>
-<h3 id="CSS-Parser"><a href="#CSS-Parser" class="headerlink" title="CSS Parser"></a>CSS Parser</h3><p>// rule<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// rule</div><div class="line"><span class="selector-tag">selector</span> &#123;</div><div class="line">	// declarations</div><div class="line">	<span class="selector-tag">key</span>: <span class="selector-tag">value</span>;</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
+<h4 id="缓存方案的设计"><a href="#缓存方案的设计" class="headerlink" title="缓存方案的设计"></a>缓存方案的设计</h4><ol>
+<li>HTML<br>在主机上面 no-cache  或者 几分钟的 cache</li>
+<li>CSS,Javascript<br>MD5/timestmap/version + 长缓存<br>如何做更新？<br>在 URI 上面做手脚<br>MD5缺点：MD5算出来一样。。。一般设置六位，重复几率很小<br>timestmap：文件修改时间或者文件上线时间，需要工程方案配合<br>version版本号：不停的改版本号 1.0.x(短效缓存)<br>长缓存</li>
+<li>Image<br>随机名字 + 长缓存(cdn)</li>
+</ol>
+<h4 id="本地数据缓存"><a href="#本地数据缓存" class="headerlink" title="本地数据缓存"></a>本地数据缓存</h4><ol>
+<li><p>Cookie<br>存储数据量有限，并且每次都会带到服务器，占用宽带</p>
+</li>
+<li><p>localStroage<br>有大小限制，数据不安全，不应当把重要数据存在里面<br>（或者跨页面事件）<br>1.是把多个数据存在一个key好，还是分开多个key存储比较好<br>2.localStorage存爆了应该怎么处理<br>3.怎么解决数据需要踢出，用怎么方式踢出？</p>
+</li>
+<li><p>sessionStorage</p>
+</li>
+<li><p>IndexedDB<br>持续化存储，可在 Web Worker 中使用</p>
+</li>
+<li><p>App Cache<br>1.可能会缓存错误页面，甚至缓存运营商的劫持广告<br>2.更新中有一个文件失败，就会全部退回上一个版本<br>3.由于是lazy更新，如果后台接口有 break change 将会是大麻烦<br>4.manifest 文件也有可能不小心被缓存</p>
+</li>
+<li><p>Service Worker<br>在请求层建立了一个服务器（独立进程）<br><a href="https://serviceworke.rs/" target="_blank" rel="external">https://serviceworke.rs/</a></p>
+</li>
+</ol>
+<h4 id="缓存设计增添"><a href="#缓存设计增添" class="headerlink" title="缓存设计增添"></a>缓存设计增添</h4><p>1.sessionStorage? localStorage? IndexedDB<br>2.用什么算法踢出?<br>3.数据缓存时间能不能让后台返回?<br>4.能不能用Service Worker 对缓存做精确控制?<br>5.存 DO (Data Object)? 还是 VO (View Object)?</p>
+<h4 id="离线包技术"><a href="#离线包技术" class="headerlink" title="离线包技术"></a>离线包技术</h4>
       
     </div>
     
@@ -367,12 +372,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/DB-管道模型/" rel="tag"># DB 管道模型</a>
-          
-        </div>
-      
 
       
       
@@ -382,8 +381,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/29/第四课/" rel="next" title="第四课">
-                <i class="fa fa-chevron-left"></i> 第四课
+              <a href="/2017/09/12/第六课/" rel="next" title="第六课">
+                <i class="fa fa-chevron-left"></i> 第六课
               </a>
             
           </div>
@@ -391,10 +390,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/19/第八课/" rel="prev" title="第八课">
-                第八课 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -519,7 +514,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第六课"><span class="nav-number">1.</span> <span class="nav-text">第六课</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#db"><span class="nav-number">1.0.1.</span> <span class="nav-text">db</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么一定要做数据缓存"><span class="nav-number">1.0.2.</span> <span class="nav-text">为什么一定要做数据缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#homework-3"><span class="nav-number">1.0.3.</span> <span class="nav-text">homework 3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-Parser"><span class="nav-number">1.0.4.</span> <span class="nav-text">CSS Parser</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#大部分性能优化都是基于缓存空间换时间"><span class="nav-number">1.</span> <span class="nav-text">大部分性能优化都是基于缓存空间换时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缓存的作用"><span class="nav-number">2.</span> <span class="nav-text">缓存的作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP的缓存"><span class="nav-number">3.</span> <span class="nav-text">HTTP的缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缓存方案的设计"><span class="nav-number">4.</span> <span class="nav-text">缓存方案的设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#本地数据缓存"><span class="nav-number">5.</span> <span class="nav-text">本地数据缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#缓存设计增添"><span class="nav-number">6.</span> <span class="nav-text">缓存设计增添</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#离线包技术"><span class="nav-number">7.</span> <span class="nav-text">离线包技术</span></a></li></ol></div>
             
 
           </div>

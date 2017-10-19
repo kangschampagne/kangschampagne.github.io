@@ -197,7 +197,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -207,7 +207,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -254,6 +254,159 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://kangschampagne.github.io/2017/10/19/第八课/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Kangschampagne">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Kagen-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/10/19/第八课/" itemprop="url">第八课</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-10-19T22:43:30+08:00">
+                2017-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h4 id="大部分性能优化都是基于缓存空间换时间"><a href="#大部分性能优化都是基于缓存空间换时间" class="headerlink" title="大部分性能优化都是基于缓存空间换时间"></a>大部分性能优化都是基于缓存空间换时间</h4><h4 id="缓存的作用"><a href="#缓存的作用" class="headerlink" title="缓存的作用"></a>缓存的作用</h4><p>1.减少延迟<br>2.降低网络负载 (锤子抢购按钮随机数限流)<br>3.保证稳定性</p>
+<h4 id="HTTP的缓存"><a href="#HTTP的缓存" class="headerlink" title="HTTP的缓存"></a>HTTP的缓存</h4><ol>
+<li>Expires 设置对象的有效期<br>问题: 用户的本地时间可能和服务器的时间不一致</li>
+<li><p>Cache-Control HTTP1.1引入<br>1.max-age=num(s), 设置最大缓存<br>2.public, 缓存能被多用户共享<br>3.private, 缓存不能在多用户间共享 (默认)<br>4.no-cache, 不会被缓存 (本地缓存了，但是用不了，用于时效性很强的)<br>5.no-store, 不能被存储 (安全考虑)</p>
+</li>
+<li><p>last-modified 设置对象的最后修改时间<br>在response Header中有last-modified 时间点，服务器check这个时间，不同则返回新文件<br>问题点: 同一时间快速度修改同一时间，这个文件已经改变。<br>问题点：CDN推送的时候，修改的时间不一致 即 服务器上文件修改时间并不一致</p>
+</li>
+<li><p>E-tag (类似文件的 uid)<br>if-none-match</p>
+</li>
+</ol>
+<blockquote>
+<p>分析：<br>max-age 和 last-modified 同时存在的情况<br>1.根据max-age看文件是否失效<br>否，直接从缓存中读取文件。是，携带 last-modified修改时间 向服务器发起请求<br>2.服务器看修改时间是否相同（同一文件）<br>否，返回新文件。是，返回304</p>
+<p>max-age + last-modified + E-tag<br>1.根据max-age看文件是否失效<br>否，直接从缓存中读取文件。是，携带 last-modified修改时间 和 E-tag(如果浏览器只支持HTTP1.0，则不携带Etag) 向服务器发起请求<br>2.如果服务器支持HTTP1.1，直接验证E-tag(优先级较高)</p>
+</blockquote>
+<h4 id="缓存方案的设计"><a href="#缓存方案的设计" class="headerlink" title="缓存方案的设计"></a>缓存方案的设计</h4><ol>
+<li>HTML<br>在主机上面 no-cache  或者 几分钟的 cache</li>
+<li>CSS,Javascript<br>MD5/timestmap/version + 长缓存<br>如何做更新？<br>在 URI 上面做手脚<br>MD5缺点：MD5算出来一样。。。一般设置六位，重复几率很小<br>timestmap：文件修改时间或者文件上线时间，需要工程方案配合<br>version版本号：不停的改版本号 1.0.x(短效缓存)<br>长缓存</li>
+<li>Image<br>随机名字 + 长缓存(cdn)</li>
+</ol>
+<h4 id="本地数据缓存"><a href="#本地数据缓存" class="headerlink" title="本地数据缓存"></a>本地数据缓存</h4><ol>
+<li><p>Cookie<br>存储数据量有限，并且每次都会带到服务器，占用宽带</p>
+</li>
+<li><p>localStroage<br>有大小限制，数据不安全，不应当把重要数据存在里面<br>（或者跨页面事件）<br>1.是把多个数据存在一个key好，还是分开多个key存储比较好<br>2.localStorage存爆了应该怎么处理<br>3.怎么解决数据需要踢出，用怎么方式踢出？</p>
+</li>
+<li><p>sessionStorage</p>
+</li>
+<li><p>IndexedDB<br>持续化存储，可在 Web Worker 中使用</p>
+</li>
+<li><p>App Cache<br>1.可能会缓存错误页面，甚至缓存运营商的劫持广告<br>2.更新中有一个文件失败，就会全部退回上一个版本<br>3.由于是lazy更新，如果后台接口有 break change 将会是大麻烦<br>4.manifest 文件也有可能不小心被缓存</p>
+</li>
+<li><p>Service Worker<br>在请求层建立了一个服务器（独立进程）<br><a href="https://serviceworke.rs/" target="_blank" rel="external">https://serviceworke.rs/</a></p>
+</li>
+</ol>
+<h4 id="缓存设计增添"><a href="#缓存设计增添" class="headerlink" title="缓存设计增添"></a>缓存设计增添</h4><p>1.sessionStorage? localStorage? IndexedDB<br>2.用什么算法踢出?<br>3.数据缓存时间能不能让后台返回?<br>4.能不能用Service Worker 对缓存做精确控制?<br>5.存 DO (Data Object)? 还是 VO (View Object)?</p>
+<h4 id="离线包技术"><a href="#离线包技术" class="headerlink" title="离线包技术"></a>离线包技术</h4>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://kangschampagne.github.io/2017/09/12/第六课/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -283,7 +436,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-12T00:37:54+08:00">
                 2017-09-12
@@ -430,7 +583,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-29T23:46:50+08:00">
                 2017-08-29
@@ -585,7 +738,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-20T18:00:00+08:00">
                 2017-08-20
@@ -768,7 +921,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-19T13:38:42+08:00">
                 2017-08-19
@@ -900,8 +1053,8 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">4</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -914,7 +1067,7 @@
             <div class="site-state-item site-state-tags">
               
                 <span class="site-state-item-count">3</span>
-                <span class="site-state-item-name">Tags</span>
+                <span class="site-state-item-name">tags</span>
               
             </div>
           
@@ -966,7 +1119,7 @@
 
 
   <div class="powered-by">
-    Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+    Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
   </div>
 
   <span class="post-meta-divider">|</span>
